@@ -1,0 +1,58 @@
+﻿<!-- Define the model var-->
+@model List<Lab11.Model.TimePerson>
+<head>
+    <LNIK REL="stylsheet" HREF="~/StyleSheet.css" TYPE="text/css">
+</head>
+
+<table>
+    <caption>Time Person of the YEar results</caption>
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Access tbe model var -->
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td data-label="Year">@item.Year</td>
+            <td data-label="Honor">@item.Honor</td>
+            <td data-label="Name">@item.Name</td>
+            <td data-label="Country">@item.Country</td>
+            <!-- Conditional if the birth or death year is not known-->
+            @if (item.Birth_Year == 0)
+            {
+            <td data-label="Birth Year">unknown</td>
+            }
+            else
+            {
+            <td data-label="Birth Year">@item.Birth_Year</td>
+            }
+            @if (item.DeathYear == 0)
+            {
+            <td data-label="Death Year">unknown</td>
+            }
+            else
+            {
+            <td data-label="Death Year">@item.DeathYear</td>
+            }
+
+            <td data-label="Title">@item.Title</td>
+            <td data-label="Category">@item.Category</td>
+            <td data-label="Context">@item.Context</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+<!-- Link to return to the index page-->
+<a asp-controller="Home" asp-action="Index">New Search</a>
